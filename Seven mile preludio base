@@ -1,0 +1,65 @@
+
+#Post One - "Ok. Iniziamo."
+###########################
+
+use_bpm 60
+
+in_thread do
+  
+  with_fx :reverb, mix: 1, room: 0.5 do |reverb|
+    with_fx :echo, mix: 0.5, decay: 6 do |echo|
+      
+      control echo, mix: 1, mix_slide: 12,
+        mix_slide_shape: 1
+      
+      control reverb, mix: 1, mix_slide: 12,
+        mix_slide_shape: 1,
+        room: 1, room_slide: 6, room_slide_shape: 1
+      
+      use_synth :piano
+      play chord(:B2, :major7)
+      sleep 4
+      play chord(:Db3, :major)
+      sleep 3.5
+      play chord(:Db3, '5')
+      sleep 0.5
+      play chord(:Eb3, '5')
+      sleep 3
+      play chord(:Db3, '5')
+      sleep 1
+      play chord(:Eb3, '5')
+      
+    end
+  end
+  
+end
+
+with_fx :reverb, mix: 0, room: 0.5 do |reverb|
+  with_fx :echo, mix: 0.5, decay: 6 do |echo|
+    
+    control echo, mix: 0.5, mix_slide: 12,
+      mix_slide_shape: 1
+    
+    control reverb, mix: 0.5, mix_slide: 12,
+      mix_slide_shape: 1,
+      room: 1, room_slide: 6, room_slide_shape: 1
+    
+    use_synth :piano
+    play chord(:B2, :major7)
+    sleep 4
+    play chord(:Db3, :major)
+    sleep 3.5
+    play chord(:Db3, '5')
+    sleep 0.5
+    play chord(:Eb3, '5')
+    sleep 3
+    play chord(:Db3, '5')
+    sleep 1
+    play chord(:Eb3, '5')
+    
+  end
+end
+
+
+
+
