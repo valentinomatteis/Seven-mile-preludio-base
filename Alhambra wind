@@ -1,0 +1,33 @@
+#Alhambra wind - one
+####################
+
+set_volume! 5
+use_bpm 60
+
+spanish_arpeggio = "C:/Users/Valentino/Desktop/C. - Ovvero un amore/Social media/Files creazione posts/Post 3/Spanish-chords-cleaned.wav"
+
+print (sample_duration spanish_arpeggio, rate: 1)
+#Original sample duration: 15.309 sec
+
+
+with_fx :reverb, mix: 0.1 do |reverb|
+  live_loop :alhambra do
+    
+    control reverb, mix: 0.9, mix_slide: 12
+    sample spanish_arpeggio, rate: 1
+    sleep (sample_duration spanish_arpeggio, rate: 1)
+    
+  end
+end
+
+live_loop :alhambra_two do
+  
+  use_synth :tech_saws
+  play chord(:A2, :major), sustain: 4, cutoff: 80, attack: 1, amp: 0.2
+  sleep 5
+  play chord(:As2, :major), sustain: 6, cutoff: 80, attack: 1, amp: 0.2
+  sleep 6
+  play chord(:A2, :major), sustain: 4, cutoff: 80, attack: 1, amp: 0.2
+  sleep 4.30888888888
+  
+end
