@@ -1,0 +1,33 @@
+#Alhambra wind with basso continuo
+##################################
+
+guitar_track = "C:/Users/Valentino/Desktop/C. - Ovvero un amore/Social media/Files creazione posts/Post 6/Guitar recorded track.wav"
+
+with_fx :flanger, mix: 0.9 do
+  with_fx :reverb, mix: 0.8 do
+    with_fx :lpf, cutoff: 60 do
+      live_loop :backgound do
+        
+        sample guitar_track, start: 0.02, finish: 0.0895, attack: 0.05, release: 0
+        sleep (sample_duration guitar_track, start: 0.005, finish: 0.08)
+        
+      end
+    end
+  end
+end
+
+with_fx :krush, mix: 0.05 do
+  with_fx :echo, mix: 0.05 do
+    with_fx :reverb, mix: 0.9 do |reverb|
+      with_fx :lpf, cutoff: 105 do
+        live_loop :guitar do
+          
+          control reverb, mix: 0.2, mix_slide: (sample_duration guitar_track)*3/2, mix_slide_shape: 7
+          sample guitar_track
+          sleep (sample_duration guitar_track)
+          
+        end
+      end
+    end
+  end
+end
