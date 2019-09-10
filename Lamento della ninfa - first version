@@ -1,0 +1,37 @@
+#Lamento della ninfa - first version
+####################################
+
+set_volume!4
+
+guitar_chords = "C:/Users/Valentino/Desktop/C. - Ovvero un amore/Social media/Files creazione posts/Guitar file - post 8.wav"
+
+with_fx :reverb, mix: 0.8 do
+  
+  live_loop :synth do
+    use_synth :tech_saws
+    play chord(:a4, :minor), cutoff: rrand(60, 77.5),
+      sustain: (sample_duration guitar_chords, finish: 0.125),
+      amp: 0.05, attack: 0.5
+    sleep (sample_duration guitar_chords, finish: 0.12)
+    
+  end
+end
+
+live_loop :guitar_loop do
+  
+  sample guitar_chords, rate: -1, amp: 0.4
+  sleep (sample_duration guitar_chords)
+  
+end
+
+with_fx :krush, mix: 0.025 do
+  with_fx :reverb, mix: 0.25 do
+    
+    live_loop :guitar_loop_due do
+      
+      sample guitar_chords, rate: 1, amp: 2
+      sleep (sample_duration guitar_chords)
+      
+    end
+  end
+end
